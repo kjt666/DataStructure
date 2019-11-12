@@ -6,8 +6,8 @@ public class SingleLinkedListDemo {
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         HeroNode node1 = new HeroNode(1, "宋江", "及时雨");
-        HeroNode node2 = new HeroNode(2, "吴用", "智多星");
-        HeroNode node3 = new HeroNode(3, "卢俊义", "玉麒麟");
+        HeroNode node2 = new HeroNode(2, "卢俊义", "玉麒麟");
+        HeroNode node3 = new HeroNode(3, "吴用", "智多星");
         HeroNode node4 = new HeroNode(4, "林冲", "豹子头");
 
         singleLinkedList.insert(node1);

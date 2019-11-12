@@ -3,8 +3,8 @@ public class DoubleLinkedListDemo {
     public static void main(String args[]) {
         DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
         DoubleHeroNode node1 = new DoubleHeroNode(1, "宋江", "及时雨");
-        DoubleHeroNode node2 = new DoubleHeroNode(2, "吴用", "智多星");
-        DoubleHeroNode node3 = new DoubleHeroNode(3, "卢俊义", "玉麒麟");
+        DoubleHeroNode node2 = new DoubleHeroNode(2, "卢俊义", "玉麒麟");
+        DoubleHeroNode node3 = new DoubleHeroNode(3, "吴用", "智多星");
         DoubleHeroNode node4 = new DoubleHeroNode(4, "林冲", "豹子头");
 
         doubleLinkedList.insert(node1);

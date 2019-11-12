@@ -260,6 +260,9 @@ class BinaryHero {
     BinaryHero left;
     BinaryHero right;
 
+    public BinaryHero() {
+    }
+
     public BinaryHero(int id, String name, String nickName) {
         this.id = id;
         this.name = name;
