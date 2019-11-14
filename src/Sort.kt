@@ -1,13 +1,15 @@
-import javax.swing.text.GapContent
+import java.util.*
 
 fun main(args: Array<String>) {
-    val array = intArrayOf(3, 9, -1, 22,10, -2, 22,4, -5)
+    val array = intArrayOf(3, 9, -1, 22, 10, -2, 22, 4, -5)
 //    bubbleSort(array)
-    selectSort(array)
+//    selectSort(array)
 //    insertSort(array)
 //    shellSort(array)
 //    quickSort(array, 0, array.size - 1)
 //    printArray(array)
+    val array2 = intArrayOf(4, 6, 8, 5, 9)
+    heapSort(array)
 }
 
 /*
@@ -179,7 +181,64 @@ fun quickSort(intArray: IntArray, left: Int, right: Int) {
     if (l < right) {
         quickSort(intArray, l, right)
     }
+}
 
+/*
+ * 堆排序
+ * 1、将无序数组构成一个堆，根据升序或降序选择大顶堆或小顶堆（大顶堆：父结点大于或等于左右子节点，小顶堆反之）[重点步骤]
+ * 2、将堆顶元素与末尾元素交换。此时的堆顶元素即为根结点为整个堆中最大值，对应数组中的第0个元素。将最大元素沉到数组末端，即将第0个元素点与数组中的最后元素交换位置。
+ * 3、重新调整结构，使其满足堆的定义，然后继续交换堆顶元素与末尾元素，反复执行调整+交换的步骤，直至整个数组有序。
+ */
+fun heapSort(intArray: IntArray) {
+
+    //先从树的最后一个非叶子结点从下往上遍历调整每颗子树构成大顶堆
+    //最后一个非叶子结点在数组中的坐标用size/2-1可得出，i为每个非叶子结点的下标
+    for (i in intArray.size / 2 - 1 downTo 0) {
+        adjustHeap(intArray, i, intArray.size)
+    }
+    println(Arrays.toString(intArray))
+    //将头结点放到数组最后,并重复1、2步骤
+    //传入方法的数组长度一直在变，（相当于将第2步置换到数组最后的元素排除出去，对剩余元素再次进行调整），重复上述步骤直到length=1
+    for (j in intArray.size - 1 downTo 1) {
+        val temp = intArray[j]
+        intArray[j] = intArray[0]
+        intArray[0] = temp
+        //此时从根节点调整一次即可
+        adjustHeap(intArray, 0, j)
+        println(Arrays.toString(intArray))
+    }
+}
+
+/**
+ * 调整以当前非叶子结点为父结点的子树，将此子树中的最大值调到父结点。
+ *
+ * @param intArray 数组
+ * @param k 非叶子结点对应数组中的下标
+ * @param length 要调整的数组长度
+ */
+fun adjustHeap(intArray: IntArray, k: Int, length: Int) {
+
+    var k = k
+    //首先记录此子树父结点的值
+    var temp = intArray[k]
+    //创建指针指向k的左子节点
+    var nodeIndex = k * 2 + 1
+    while (nodeIndex < length) {
+        //比较此子树左右结点的值
+        if (nodeIndex + 1 < length && intArray[nodeIndex] < intArray[nodeIndex + 1]) {
+            nodeIndex++//将指针指向k的右子结点
+        }
+        //如果子节点的值大于父结点
+        if (intArray[nodeIndex] > temp) {
+            //将子节点的值赋给父结点
+            intArray[k] = intArray[nodeIndex]
+            //进行下一个子树的判断
+            k = nodeIndex
+        } else
+            break
+        nodeIndex = k * 2 + 1
+    }
+    intArray[k] = temp
 }
 
 fun printArray(intArray: IntArray) {
