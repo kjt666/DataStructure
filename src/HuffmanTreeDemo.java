@@ -86,13 +86,13 @@ class Node implements Comparable<Node> {
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "HuffmanCode.Node{" +
                 "value=" + value +
                 '}';
     }
 
     /**
-     * 根据value从大到小排序
+     * 根据value从小到大排序
      *
      * @param o
      * @return
